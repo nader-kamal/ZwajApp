@@ -9,7 +9,6 @@ import { error } from 'util';
 })
 export class RegisterComponent implements OnInit {
   model: any = {};
-  @Input() valuesFromRegister: any;
   @Output() cancelRegister=new EventEmitter();
   constructor(private authservice: AuthService) { }
 

@@ -46,6 +46,7 @@ namespace ZwajApp.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> login(UserForLoginDto userForLoginDto)
         {
+
             var userFromRepo = await _authRepository.Login(userForLoginDto.UserName.ToLower(), userForLoginDto.Password);
             if (userFromRepo == null)
             {
@@ -55,18 +56,22 @@ namespace ZwajApp.API.Controllers
                 new Claim(ClaimTypes.NameIdentifier,userFromRepo.Id.ToString()),
                 new Claim(ClaimTypes.Name,userFromRepo.Username)
             };
-            var key=new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("Appsettings:Token").Value));
-            var cred=new SigningCredentials(key,SecurityAlgorithms.HmacSha512);
-            var tokenDescriptor=new SecurityTokenDescriptor{
-                Subject=new ClaimsIdentity(claims),
-                Expires=DateTime.Now.AddDays(1),
-                SigningCredentials=cred
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("Appsettings:Token").Value));
+            var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha512);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.Now.AddDays(1),
+                SigningCredentials = cred
             };
-            var tokenHandler=new JwtSecurityTokenHandler();
-            var token=tokenHandler.CreateToken(tokenDescriptor);
-            return Ok(new {
-                token=tokenHandler.WriteToken(token)
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return Ok(new
+            {
+                token = tokenHandler.WriteToken(token)
             });
+
+
         }
     }
 }
