@@ -1,6 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import"~bootstrap-v4-rtl/dist/css/bootstrap-rtl.css";  
+@import"../node_modules/bootswatch/dist/sketchy/bootstrap.min.css";
 @import"~font-awesome/css/font-awesome.min.css";
+@import"../node_modules/alertifyjs/build/css/alertify.css";
+@import"../node_modules/alertifyjs/build/css/themes/bootstrap.min.css";
+@import url("assets/myStyles.css");
 
 /*fonts*/
 /*@import  url(https://arbfonts.com//wp-content/fonts/misc//Sevin.ttf);*/
