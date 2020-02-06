@@ -19,7 +19,8 @@ export class MemberListComponent implements OnInit {
     private alertify: AlertifyService) { }
 
   ngOnInit() {
-     this.loadUsers();
+     //this.loadUsers();
+     this.route.data.subscribe(data=>{this.users=data['users']})
 
   }
 
@@ -27,13 +28,13 @@ export class MemberListComponent implements OnInit {
 
 
 
-  loadUsers() {
+  /*loadUsers() {
     this.userService.GetUsers().subscribe((users:User[])=>{
       this.users=users;
     },
     error=>this.alertify.error(error)
       
     )
-  }
+  }*/
 
 }

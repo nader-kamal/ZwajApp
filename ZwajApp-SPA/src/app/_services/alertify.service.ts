@@ -58,7 +58,7 @@ alertify.defaults = {
   // notifier defaults
   notifier:{
   // auto-dismiss wait time (in seconds)  
-      delay:2,
+      delay:5,
   // default position
       position:'bottom-right',
   // adds a close button to notifier messages
