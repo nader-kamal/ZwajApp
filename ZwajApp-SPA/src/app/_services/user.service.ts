@@ -10,15 +10,17 @@ import { User } from '../_models/user';
   providedIn: 'root'
 })
 export class UserService {
-  baseUrl = environment.apiUrl+'users/'
-constructor(private http:HttpClient) { }
+  baseUrl = environment.apiUrl + 'users/'
+  constructor(private http: HttpClient) { }
 
-GetUsers():Observable<User[]>{
-return this.http.get<User[]>(this.baseUrl)
-}
-GetUser(id:number):Observable<User>{
-  return this.http.get<User>(`${this.baseUrl}${id}`);
+  GetUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.baseUrl)
+  }
+  GetUser(id: number): Observable<User> {
+    return this.http.get<User>(`${this.baseUrl}${id}`);
 
-}
-
+  }
+  updateUser(id: number, user: User) {
+    return this.http.put(`${this.baseUrl}${id}`, user);
+  }
 }
